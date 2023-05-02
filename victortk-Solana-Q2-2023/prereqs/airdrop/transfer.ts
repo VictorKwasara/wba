@@ -15,9 +15,9 @@ const from = Keypair.fromSecretKey(new Uint8Array(wallet));
 
 // Define our WBA public key
 const to = new PublicKey('Ex6kchY3e5Fe1tqHzjX8tBDYnS6hkxJnubCAjy2C9UhT');
-// 'http://localhost:8899'
+// 'http://localhost:8899'"https://api.devnet.solana.com"
 //Create a Solana devnet connection
-const connection = new Connection("https://api.devnet.solana.com");
+const connection = new Connection('https://api.devnet.solana.com');
 
 (
   async () => {

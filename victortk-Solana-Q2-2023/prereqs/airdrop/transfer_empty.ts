@@ -17,7 +17,7 @@ const from = Keypair.fromSecretKey(new Uint8Array(wallet));
 const to = new PublicKey('Ex6kchY3e5Fe1tqHzjX8tBDYnS6hkxJnubCAjy2C9UhT');
 // 'http://localhost:8899'
 //Create a Solana devnet connection
-const connection = new Connection("https://api.devnet.solana.com");
+const connection = new Connection('https://api.devnet.solana.com');
 
 (async () => {
 	try {
