@@ -24,13 +24,22 @@ mod tests {
 
     #[test]
     fn airdrop() {
+<<<<<<< HEAD
         const RPC_URL: &str = "http://localhost:8899";
+=======
+        const RPC_URL: &str = "https://api.devnet.solana.com";
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
         let keypair = read_keypair_file("dev-wallet.json").expect("Couldn't find wallet file");
         //Connected to Solana Devnet RPC Client 
         let client = RpcClient::new(RPC_URL);
 
+<<<<<<< HEAD
         println!("The public key is {:?}", keypair.pubkey());
         let y  =  client.request_airdrop(&keypair.pubkey(), 2_000_000_000u64) ;
+=======
+        println!("The secret key is {:?}", keypair.pubkey());
+        let y  =  client.request_airdrop_with_blockhash(&keypair.pubkey(), 2_000_000_000u64,&client.get_latest_blockhash().unwrap()) ;
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
 
         println!(" the result ----> > {:?} ",y );
         match y {
@@ -46,11 +55,19 @@ mod tests {
     fn transfer_sol(){
         // import our keypair 
         let keypair = read_keypair_file("dev-wallet.json").expect("Couldn't find wallet file");
+<<<<<<< HEAD
         const RPC_URL: &str = "http://localhost:8899";
 
         //Define our WBA public key 
 
         let to_pubkey = Pubkey::from_str("D3p5BRksiLF3rcEPTiPdZhB47hEhaJTMSBgaofJjdTNV").unwrap(); //jjjjjjj
+=======
+        const RPC_URL: &str = "https://api.devnet.solana.com";
+
+        //Define our WBA public key 
+
+        let to_pubkey = Pubkey::from_str("").unwrap(); //jjjjjjj
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
 
         //Create a Solana devnet connection 
 
@@ -64,7 +81,11 @@ mod tests {
             &[transfer(
                 &keypair.pubkey(),
                 &to_pubkey,
+<<<<<<< HEAD
                 2_000_000_000
+=======
+                1_000_000
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
             )],
             Some(&keypair.pubkey()),
             &vec![&keypair],
@@ -79,6 +100,7 @@ mod tests {
         Success! Check out your TX here: 
         https://explorer.solana.com/tx/{}/?cluster=devnet", signature)
 
+<<<<<<< HEAD
     }
     #[test]
     fn transfer_empty() {
@@ -176,4 +198,90 @@ mod tests {
     }
 
 
+=======
+
+    }
+//     #[test]
+//     fn transfer_empty() {
+//          // import our keypair 
+//         let keypair = read_keypair_file("dev-wallet.json").expect("Couldn't find wallet file");
+//         const RPC_URL: &str = "https://api.devnet.solana.com";
+
+//         //Define our WBA public key 
+
+//         let to_pubkey = Pubkey::from_str("").unwrap();
+
+//         //Create a Solana devnet connection 
+
+//         let rpc_client = RpcClient::new(RPC_URL);
+
+//         // Get the recent blockhash 
+
+//         let recent_blockhash = rpc_client.get_latest_blockhash().expect("Failed to get recent blockhash");
+//         //Get balance of dev wallet 
+//         let balance = rpc_client.get_balance(&keypair.pubkey()).expect("Failed to get balance");
+
+//         //Create a test transaction to calculate fees 
+//         let message = Message::new_with_blockhash(
+//             &[transfer(
+//                 &keypair.pubkey(),
+//                 &to_pubkey, 
+//                 balance,
+//             )],
+//             Some(&keypair.pubkey()),
+//             &recent_blockhash
+//         );
+
+//         // Calculate exact fee rate to transafer entire SOL amount out of account minud fees 
+//         let fee = rpc_client 
+//         .get_fee_for_message(&message)
+//         .expect("Failed to get fee calculator");
+
+//         //Deduct fee from lamports amount and create a TX with correct balance 
+//         let transaction  = Transaction::new_signed_with_payer(
+//             &[transfer(
+//                 &keypair.pubkey(),
+//                 &to_pubkey,
+//                 balance - fee, 
+//             )],
+//             Some(&keypair.pubkey()),
+//             &vec![&keypair],
+//             recent_blockhash
+//         );
+//     }
+
+//     #[test]
+//    fn submit_prereq() {
+//     const RPC_URL: &str = "https://api.devnet.solana.com";
+//     //Create a Solana devenet connection 
+//     let rpc_client = RpcClient::new(RPC_URL);
+//     // Let's define our accounts 
+//     let signer = read_keypair_file("wba-wallet.json").expect("Couldn't find wallet file");
+
+//     let prereq = WbaPrereqProgram::derive_program_address(&[b"prereq", signer.pubkey().to_bytes().as_ref()]);
+//     //Define our instruction data 
+//     let args = CompleteArgs {
+//         github: b"testaccount".to_vec()
+//     };
+
+//     //Get recent blockhash 
+//     let blockhash = rpc_client.get_latest_blockhash().expect("Failed to get recent blockhash");
+
+//     //Now we can invoke the "complete " function 
+//     let transaction = WbaPrereqProgram::complete(
+//         &[&signer.pubkey(), &prereq, &system_program::id()],
+//         &args, 
+//         Some(&signer.pubkey()),
+//         &[&signer],
+//         blockhash
+//     );
+
+//     //Send the transaction 
+//     let signature = rpc_client.send_and_confirm_transaction(&transaction)
+//     .expect("Failed to send transaction");
+
+// //Print our transaction out 
+// println!("Success! Check out your TX here: https://explorer.solana.com/tx/{}/?cluster=devnet", signature);
+//    }
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
 }

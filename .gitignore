@@ -2,4 +2,7 @@ node_modules
 *wallet.json
 .env
 target
+<<<<<<< HEAD
 test-ledger
+=======
+>>>>>>> f4d0abcd1cd8622ddbe800ff6a6ba93c2eb843b2
