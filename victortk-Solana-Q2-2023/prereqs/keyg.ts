@@ -6,7 +6,7 @@ dotenv.config() ;
 if (process.env.SECRET_KEY != null) {
   let sk = bs58.decode(process.env.SECRET_KEY);
      fs.writeFileSync(
-				'./wba-wallet.json',
+				'../wba-wallet.json',
 				`[${Keypair.fromSecretKey(sk).secretKey}]`
 			);
 }
